@@ -7,19 +7,8 @@ import java.util.List;
 
 public class Controller {
     //TODO потрібно надати значення змінним
-    private List<String> usedCities;
-    private List<String> namesCities;
-    //-------------------------
-    public static void performMove(String inputCity, JLabel computerResponseLabel) {
-        // Логіка гри та обробка ходу
-        // ...
-
-        System.out.println(inputCity);
-        // Приклад відповіді комп'ютера
-        String computerResponse = "Жмеренка";
-        computerResponseLabel.setText(computerResponse);
-    }
-    //---------------------------
+    private List<String> usedCities = new ArrayList<>();
+    private List<String> namesCities = new ArrayList<>();
 
     public void setUsedCities(List<String> usedCities) {
         this.usedCities = usedCities;
