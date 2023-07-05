@@ -1,9 +1,13 @@
 package Fremes;
 
+import javax.swing.*;
+
 public class Main {
     public static void main(String[] args) {
-
-//        new WelcomeFrame();
-        System.out.println("hello");
+        SwingUtilities.invokeLater(new Runnable() {
+            public void run() {
+                WelcomeFrame Welcome = new WelcomeFrame();
+            }
+        });
     }
 }
