@@ -1,5 +1,6 @@
 package Controller;
 
+import Fremes.MainFrame;
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -9,13 +10,16 @@ public class Controller {
     private List<String> usedCities;
     private List<String> namesCities;
 
-    public Controller(List<String> namesCities, List<String> usedCities) {
-        this.namesCities = new ArrayList<>(namesCities);
-        this.usedCities = new ArrayList<>(usedCities);
+    public void setUsedCities(List<String> usedCities) {
+        this.usedCities = usedCities;
     }
 
     public List<String> getUsedCities() {
         return usedCities;
+    }
+
+    public void setNamesCities(List<String> namesCities) {
+        this.namesCities = namesCities;
     }
 
     public List<String> getNamesCities() {
