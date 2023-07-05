@@ -5,28 +5,37 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class WelcomeFrame extends JFrame implements ActionListener {
-    private final JButton button;
+public class WelcomeFrame extends JFrame  {
+
     WelcomeFrame(){
-        button = new JButton();
-        button.setText("Ok");
+        JButton button = new JButton("Старт"); // Создали кнопку
+
         button.setHorizontalTextPosition(JButton.CENTER);
-        ImageIcon logo = new ImageIcon("LOGO.png");        //TODO потрібно прив'язати файл.
+        ImageIcon logo = new ImageIcon("src/main/resources/LOGO_2.png");        //TODO потрібно прив'язати файл.
         JLabel label = new JLabel("Вітаємо вас у грі дитинства і всіх розумників");
-        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        this.setLayout(new FlowLayout());
-        this.setTitle("Вітаємо");
-        this.setIconImage(logo.getImage());
-        this.setSize(400,100);
-        this.setVisible(true);
-        this.add(label);
-        this.add(button);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLayout(new FlowLayout());
+        setTitle("Вітаємо");
+        setIconImage(logo.getImage());
+        setSize(400,100);
+        setLocationRelativeTo(null); // Положення центр
+        setVisible(true);
+        add(label);
+        add(button);
+
+        button.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                openMainFrame();
+            }
+        });
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) { //TODO реалізувати метод для кнопки.
-        if (e.getSource() == button){
+    private void openMainFrame() {
+        setVisible(false);
+        dispose(); // Закриває вітальне вікно
 
-        }
+        MainFrame mainFrame = new MainFrame();
+        mainFrame.setVisible(true); // Відкриває вікно гри
     }
 }

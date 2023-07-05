@@ -8,6 +8,17 @@ public class Controller {
     //TODO потрібно надати значення змінним
     private List<String> usedCities;
     private List<String> namesCities;
+    //-------------------------
+    public static void performMove(String inputCity, JLabel computerResponseLabel) {
+        // Логіка гри та обробка ходу
+        // ...
+
+        System.out.println(inputCity);
+        // Приклад відповіді комп'ютера
+        String computerResponse = "Жмеренка";
+        computerResponseLabel.setText(computerResponse);
+    }
+    //---------------------------
 
     public Controller(List<String> namesCities, List<String> usedCities) {
         this.namesCities = new ArrayList<>(namesCities);
