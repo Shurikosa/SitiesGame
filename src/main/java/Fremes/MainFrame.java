@@ -124,7 +124,8 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
                 // Виконати дії, пов'язані з ходомгри
-                Controller.performMove(inputCity, computerResponseLabel, userScoreLabel, computerScoreLabel);
+                Controller controller = new Controller();
+                controller.getCityValidation(inputCity, computerResponseLabel, userScoreLabel, computerScoreLabel);
             }
         });
     }
