@@ -30,19 +30,22 @@ public class Controller {
     public void getCityValidation(String inputCity, JLabel computerResponseLabel) {
         String lastLetterComputer = null;
         String lastLetterUser = null;
+        int userCount = 0;
+        int computerCount = 0;
 
         if (inputCity != null && validateInput(inputCity, lastLetterComputer)) {
             usedCities.add(inputCity);
             lastLetterUser = getLastLetterUser(inputCity);
-            String computerCity = getNextCity(inputCity, lastLetterUser);
+            String computerCity = getNextCity(inputCity, lastLetterUser, computerCount);
 
             if (computerCity != null) {
                 computerResponseLabel.setText("Комп'ютер: " + computerCity);
             }
-            lastLetterComputer = getLastLetterComputer(inputCity, lastLetterUser);
+            lastLetterComputer = getLastLetterComputer(inputCity, lastLetterUser, computerCount);
+            userCount++;
             //TODO потрібно додати посилання на клас який реалізує введення рахунку та змінити текст
         } else if (inputCity.equalsIgnoreCase("Здаюсь")) {
-            JOptionPane.showMessageDialog(null, "\"Ви програли\"", "Нажаль", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком\"" + userCount + ":" + computerCount, "Нажаль", JOptionPane.PLAIN_MESSAGE);
         } else if (inputCity != null && !namesCities.contains(inputCity)) {
             JOptionPane.showMessageDialog(null, "Місто \"" + inputCity + "\" не знайдено", "Помилка", JOptionPane.PLAIN_MESSAGE);
         } else if (inputCity != null && !lastLetterComputer.equalsIgnoreCase(inputCity.substring(0, 1))) {
@@ -51,7 +54,7 @@ public class Controller {
             JOptionPane.showMessageDialog(null, "Місто \"" + inputCity + "\" уже використане", "Помилка", JOptionPane.PLAIN_MESSAGE);
             //TODO потрібно додати посилання на клас який реалізує введення рахунку та змінити текст
         } else {
-            JOptionPane.showMessageDialog(null, "\"Ви перемогли\"", "Вітаємо", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\"Ви перемогли з рахунком\"" + userCount + ":" + computerCount, "Вітаємо", JOptionPane.PLAIN_MESSAGE);
 
         }
         computerResponseLabel.setText("");
@@ -80,7 +83,7 @@ public class Controller {
 
 
     // отримуємо назву міста яке надсилатимиться у відповідь від комп'ютера
-    private String getNextCity(String answer, String lastLetter) {
+    private String getNextCity(String answer, String lastLetter, int computerCount) {
         String nextCity = null;
 
         for (String city : namesCities) {
@@ -94,12 +97,13 @@ public class Controller {
         if (nextCity != null) {
             usedCities.add(nextCity);
         }
+        computerCount++;
         return nextCity;
     }
 
     // отримуємо останню літеру слова введеного комп'ютером та замінюємо у разі невідповідності
-    private String getLastLetterComputer(String answer, String lastLetter) {
-        String city = getNextCity(answer, lastLetter);
+    private String getLastLetterComputer(String answer, String lastLetter, int computerCount) {
+        String city = getNextCity(answer, lastLetter, computerCount);
         int index = city.length() - 1;
         String lastLetterComputer = String.valueOf(city.toLowerCase().charAt(index));
         if (lastLetterComputer.equalsIgnoreCase("ґ") || lastLetterComputer.equalsIgnoreCase("ї") || lastLetterComputer.equalsIgnoreCase("й") || lastLetterComputer.equalsIgnoreCase("ь")) {
