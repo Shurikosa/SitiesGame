@@ -1,14 +1,30 @@
 package Controller;
 
-import Fremes.MainFrame;
 import javax.swing.*;
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
     //TODO потрібно надати значення змінним
     private List<String> usedCities = new ArrayList<>();
-    private List<String> namesCities = new ArrayList<>();
+    private List<String> namesCities = new ArrayList<>(readSitiesFromFile());
+
+    public List<String> readSitiesFromFile() {
+        String filePath = "src/main/resources/CitiesList.txt";
+        List<String> result = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                result.add(line);
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public void setUsedCities(List<String> usedCities) {
         this.usedCities = usedCities;
