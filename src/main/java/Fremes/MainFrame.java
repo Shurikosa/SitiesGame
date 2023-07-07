@@ -2,6 +2,7 @@ package Fremes;
 
 import Controller.Controller;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,6 +10,9 @@ import java.awt.event.ActionListener;
 public class MainFrame extends JFrame {
     private JTextField inputField;
     private JLabel computerResponseLabel;
+    private JLabel userScoreLabel;
+    private JLabel scoreLabel;
+    private JLabel computerScoreLabel;
 
     public MainFrame() {
         setTitle("МІСТА УКРАЇНИ");
@@ -72,23 +76,56 @@ public class MainFrame extends JFrame {
         Font largerResponseLabelFont = responseLabelFont.deriveFont(responseLabelFont.getSize() + 15f);
         computerResponseLabel.setFont(largerResponseLabelFont);
 
+        userScoreLabel = new JLabel("0");
+        Font userScoreLabelFont = userScoreLabel.getFont();
+        Font largerUserScoreLabelFont = userScoreLabelFont.deriveFont(userScoreLabelFont.getSize() + 15f);
+        userScoreLabel.setFont(largerUserScoreLabelFont);
+        computerScoreLabel = new JLabel("0");
+        Font computerScoreLabelFont = computerScoreLabel.getFont();
+        Font largerСomputerScoreLabelFont = computerScoreLabelFont.deriveFont(computerScoreLabelFont.getSize() + 15f);
+        computerScoreLabel.setFont(largerСomputerScoreLabelFont);
+
         JLabel responseLabel = new JLabel("Відповідь комп'ютера:");
         responseLabel.setFont(largerLabelFont);
         responsePanel.add(responseLabel);
         responsePanel.add(computerResponseLabel);
 
+        // Панель рахунку
+        JPanel scorePanel = new JPanel(new BorderLayout());
+        JPanel scoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel userScoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+        JPanel computerScoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+
+        scoreLabel = new JLabel("Рахунок");
+        scoreLabel.setFont(largerLabelFont);
+        scorePanel.add(scoreNamePanel, BorderLayout.NORTH);
+        scoreNamePanel.add(scoreLabel);
+
+        scorePanel.add(userScoreNamePanel, BorderLayout.WEST);
+        userScoreNamePanel.add(userScoreLabel);
+        scorePanel.add(computerScoreNamePanel, BorderLayout.EAST);
+        computerScoreNamePanel.add(computerScoreLabel);
+
+        // Відступ зправа для computerScoreLabel        -----------------------------------------
+        computerScoreLabel.setBorder(new EmptyBorder(0, 0, 0, 100));
+        userScoreLabel.setBorder(new EmptyBorder(0, 100, 0, 0));
+        scorePanel.setBorder(new EmptyBorder(0, 0, 50, 0));
+
+
         // Додаємо панелі в контейнер
-        container.add(inputPanel, BorderLayout.NORTH);
-        container.add(responsePanel, BorderLayout.CENTER);
+        JPanel mainPanel = new JPanel(new BorderLayout());
+        mainPanel.add(inputPanel, BorderLayout.NORTH);
+        mainPanel.add(responsePanel, BorderLayout.CENTER);
+        mainPanel.add(scorePanel, BorderLayout.SOUTH);
+        container.add(mainPanel, BorderLayout.CENTER);
 
         // Додаємо обробник події для кнопки "Зробити хід"
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
-                // Виконати дії, пов'язані з ходом гри
-                Controller.performMove(inputCity, computerResponseLabel);
+                // Виконати дії, пов'язані з ходомгри
+                Controller.performMove(inputCity, computerResponseLabel, userScoreLabel, computerScoreLabel);
             }
         });
     }
-
 }
