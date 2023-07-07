@@ -27,9 +27,30 @@ public class Controller {
     }
 
     //метод реалізує прийняття запиту, обробку та надання відповіді
-    public void getCityValidation(String inputCity, JLabel computerResponseLabel) {
+    public void getCityValidation(String inputCity, JLabel computerResponseLabel, JLabel userScoreLabel, JLabel computerScoreLabel ) {
         String lastLetterComputer = null;
         String lastLetterUser = null;
+
+        /**
+         * Зразок
+         * якщо хід юзера прийнят то змінюемо userScore
+         * якщо хід робить компьютер змінюємо computerScore
+         */
+                String k;
+        if (inputCity.isEmpty()){ //Перевірка на пусто
+            k="Введіть місто";
+        }else if (Character.isLowerCase(inputCity.charAt(0))){
+            k = "Міста пишуть з заглавної"; // Перевірка заглавної літери
+        }else {
+            k = "Охтирка";
+        }
+        String computerResponse = k;
+        String userScore = "5";//Приклад рахунку юзера
+        String computerScore = "5";//Приклад рахунку юзера
+        computerResponseLabel.setText(computerResponse);
+        userScoreLabel.setText(userScore);//Рахунок юзера
+        computerScoreLabel.setText(computerScore);//Рахунок юзера
+        //----------------------------------
 
         if (inputCity != null && validateInput(inputCity, lastLetterComputer)) {
             usedCities.add(inputCity);
