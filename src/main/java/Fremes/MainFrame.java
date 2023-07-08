@@ -13,6 +13,7 @@ public class MainFrame extends JFrame {
     private JLabel userScoreLabel;
     private JLabel scoreLabel;
     private JLabel computerScoreLabel;
+    Controller controller = new Controller();
 
     public MainFrame() {
         setTitle("МІСТА УКРАЇНИ");
@@ -124,8 +125,8 @@ public class MainFrame extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
                 // Виконати дії, пов'язані з ходомгри
-                Controller controller = new Controller();
-                controller.getCityValidation(inputCity, computerResponseLabel, userScoreLabel, computerScoreLabel);
+
+                controller.getCityValidation(inputCity, computerResponseLabel, inputField);
             }
         });
     }
