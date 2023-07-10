@@ -1,6 +1,6 @@
-package Fremes;
+package fremes;
 
-import Controller.Controller;
+import сontroller.Controller;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -35,6 +35,7 @@ public class MainFrame extends JFrame {
         JLabel inputLabel = new JLabel("Введіть місто:");
         inputField = new JTextField(15);
         JButton submitButton = new JButton("Зробити хід");
+        JButton submitButton2 = new JButton("Здатися");
 
         // Збільшення розміру шрифту для компонентів вводу
         Font labelFont = inputLabel.getFont();
@@ -48,6 +49,9 @@ public class MainFrame extends JFrame {
         Font buttonFont = submitButton.getFont();
         Font largerButtonFont = buttonFont.deriveFont(buttonFont.getSize() + 15f);
         submitButton.setFont(largerButtonFont);
+        Font buttonFont2 = submitButton2.getFont();
+//        Font largerButtonFont = buttonFont.deriveFont(buttonFont.getSize() + 15f);
+        submitButton2.setFont(largerButtonFont);
 
         // Додаємо компоненти на панель вводу
         GridBagConstraints gbc = new GridBagConstraints();
@@ -63,6 +67,7 @@ public class MainFrame extends JFrame {
         // Панель для центрування кнопки
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(submitButton);
+        buttonPanel.add(submitButton2);
 
         // Додаємо компоненти на панель вводу
         gbc.gridy = 2;
@@ -126,8 +131,17 @@ public class MainFrame extends JFrame {
                 String inputCity = inputField.getText();
                 // Виконати дії, пов'язані з ходомгри
 
-                controller.getCityValidation(inputCity, computerResponseLabel, inputField);
+                controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
             }
         });
+        submitButton2.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                String inputCity = "Здаюсь";
+                // Виконати дії, пов'язані з ходомгри
+
+                controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
+            }
+        });
+
     }
 }

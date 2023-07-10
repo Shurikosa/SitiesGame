@@ -1,4 +1,4 @@
-package Fremes;
+package fremes;
 
 import javax.swing.*;
 import java.awt.*;
