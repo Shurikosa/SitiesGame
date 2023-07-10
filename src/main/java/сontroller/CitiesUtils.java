@@ -9,14 +9,12 @@ import java.util.List;
 
 public class CitiesUtils {
 
-    private static List<String> words;
-    private String filePath = "src/main/resources/CitiesList.txt";
+    private static String filePath = "src/main/resources/CitiesList.txt";
 
     private CitiesUtils() {
-        words = readSitiesFromFile();
     }
 
-    private List<String> readSitiesFromFile() {
+    public static List<String> readSitiesFromFile() {
         List<String> result = new ArrayList<>();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
@@ -29,7 +27,4 @@ public class CitiesUtils {
         return result;
     }
 
-    public static List<String> getWords() {
-        return words;
-    }
 }
