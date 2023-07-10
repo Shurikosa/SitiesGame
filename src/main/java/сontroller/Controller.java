@@ -7,7 +7,7 @@ import java.util.List;
 public class Controller {
     //TODO потрібно надати значення змінним
     private List<String> usedCities = new ArrayList<>();
-    private List<String> namesCities = new ArrayList<>(CitiesUtils.getWords());
+    private List<String> namesCities = new ArrayList<>(CitiesUtils.readSitiesFromFile());
 
     String lastLetterComputer;
     String lastLetterUser;
