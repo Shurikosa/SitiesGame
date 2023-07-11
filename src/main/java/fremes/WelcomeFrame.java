@@ -18,6 +18,7 @@ public class WelcomeFrame extends JFrame  {
         setIconImage(logo.getImage());
         setSize(400,100);
         setLocationRelativeTo(null); // Положення центр
+        setResizable(false);
         setVisible(true);
         add(label);
         add(button);
@@ -25,15 +26,15 @@ public class WelcomeFrame extends JFrame  {
         button.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                openMainFrame();
+                openRulesOfTheGame();
             }
         });
     }
 
-    private void openMainFrame() {
+    private void openRulesOfTheGame() {
         setVisible(false);
         dispose(); // Закриває вітальне вікно
-        MainFrame mainFrame = new MainFrame();
-        mainFrame.setVisible(true); // Відкриває вікно гри
+        RulesOfTheGame rulesOfTheGame = new RulesOfTheGame();
+        rulesOfTheGame.setVisible(true); // Відкриває вікно гри
     }
 }
