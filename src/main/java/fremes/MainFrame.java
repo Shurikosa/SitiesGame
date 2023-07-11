@@ -127,13 +127,12 @@ public class MainFrame extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
-                controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
+                controller.getCityValidation(inputCity, computerResponseLabel, inputField);
             }
         });
         submitButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                String inputCity = "Здаюсь";
-                controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
+                controller.reactionToButton();
             }
         });
     }
