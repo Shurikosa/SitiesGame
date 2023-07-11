@@ -9,7 +9,6 @@ public class WelcomeFrame extends JFrame  {
 
     WelcomeFrame(){
         JButton button = new JButton("Старт"); // Создали кнопку
-
         button.setHorizontalTextPosition(JButton.CENTER);
         ImageIcon logo = new ImageIcon("src/main/resources/LOGO_2.png");        //TODO потрібно прив'язати файл.
         JLabel label = new JLabel("Вітаємо вас у грі дитинства і всіх розумників");
@@ -34,7 +33,6 @@ public class WelcomeFrame extends JFrame  {
     private void openMainFrame() {
         setVisible(false);
         dispose(); // Закриває вітальне вікно
-
         MainFrame mainFrame = new MainFrame();
         mainFrame.setVisible(true); // Відкриває вікно гри
     }

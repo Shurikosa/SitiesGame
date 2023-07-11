@@ -50,7 +50,6 @@ public class MainFrame extends JFrame {
         Font largerButtonFont = buttonFont.deriveFont(buttonFont.getSize() + 15f);
         submitButton.setFont(largerButtonFont);
         Font buttonFont2 = submitButton2.getFont();
-//        Font largerButtonFont = buttonFont.deriveFont(buttonFont.getSize() + 15f);
         submitButton2.setFont(largerButtonFont);
 
         // Додаємо компоненти на панель вводу
@@ -112,7 +111,7 @@ public class MainFrame extends JFrame {
         scorePanel.add(computerScoreNamePanel, BorderLayout.EAST);
         computerScoreNamePanel.add(computerScoreLabel);
 
-        // Відступ зправа для computerScoreLabel        -----------------------------------------
+        // Відступ зправа для computerScoreLabel
         computerScoreLabel.setBorder(new EmptyBorder(0, 0, 0, 100));
         userScoreLabel.setBorder(new EmptyBorder(0, 100, 0, 0));
         scorePanel.setBorder(new EmptyBorder(0, 0, 50, 0));
@@ -129,19 +128,14 @@ public class MainFrame extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
-                // Виконати дії, пов'язані з ходомгри
-
                 controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
             }
         });
         submitButton2.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = "Здаюсь";
-                // Виконати дії, пов'язані з ходомгри
-
                 controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
             }
         });
-
     }
 }

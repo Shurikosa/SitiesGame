@@ -8,12 +8,10 @@ public class Controller {
     //TODO потрібно надати значення змінним
     private List<String> usedCities = new ArrayList<>();
     private List<String> namesCities = new ArrayList<>(CitiesUtils.readSitiesFromFile());
-
     String lastLetterComputer;
     String lastLetterUser;
     int userCount;
     int computerCount=0;
-
 
     //метод реалізує прийняття запиту, обробку та надання відповіді
     public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField, JLabel userScoreLabel, JLabel computerScoreLabel) {
@@ -28,14 +26,12 @@ public class Controller {
             String computerCity = getNextCity(inputCity);
             userCount++;
             userScoreLabel.setText(String.valueOf(userCount));
-
             if (computerCity != null) {
                 lastLetterComputer = getLastLetterComputer(computerCity);
                 computerCount++;
                 computerScoreLabel.setText(String.valueOf(userCount));
                 computerResponseLabel.setText(computerCity);
             }
-
         } else if (inputCity.equalsIgnoreCase("Здаюсь")) {
             JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком\"" + userCount + ":" + computerCount, "Нажаль", JOptionPane.PLAIN_MESSAGE);
         } else if (inputCity != null && !namesCities.contains(inputCity)) {
@@ -47,7 +43,6 @@ public class Controller {
             JOptionPane.showMessageDialog(null, "Місто повинно починатися на літеру \"" + lastLetterComputer + "\"", "Помилка", JOptionPane.PLAIN_MESSAGE);
         } else {
             JOptionPane.showMessageDialog(null, "\"Ви перемогли з рахунком\"" + userCount + ":" + computerCount, "Вітаємо", JOptionPane.PLAIN_MESSAGE);
-
         }
         inputField.setText("");
     }
@@ -69,10 +64,8 @@ public class Controller {
         if (lastLetter.equalsIgnoreCase("ґ") || lastLetter.equalsIgnoreCase("ї") || lastLetter.equalsIgnoreCase("й") || lastLetter.equalsIgnoreCase("ь") || lastLetter.equalsIgnoreCase("и")) {
             lastLetter = String.valueOf(city.toUpperCase().charAt(index - 1));
         }
-
         return lastLetter;
     }
-
 
     // отримуємо назву міста яке надсилатимиться у відповідь від комп'ютера
     private String getNextCity(String answer) {
@@ -80,16 +73,13 @@ public class Controller {
 
         for (String city : namesCities) {
             if (!city.equalsIgnoreCase(answer) && !usedCities.contains(city) && lastLetterUser.equalsIgnoreCase(city.substring(0, 1))) {
-
                 nextCity = city;
                 break;
             }
         }
-
         if (nextCity != null) {
             usedCities.add(nextCity);
         }
-
         return nextCity;
     }
 
@@ -100,7 +90,6 @@ public class Controller {
         if (lastLetterComputer.equalsIgnoreCase("ґ") || lastLetterComputer.equalsIgnoreCase("ї") || lastLetterComputer.equalsIgnoreCase("й") || lastLetterComputer.equalsIgnoreCase("ь") || lastLetterComputer.equalsIgnoreCase("и")) {
             lastLetterComputer = String.valueOf(city.toUpperCase().charAt(index - 1));
         }
-
         return lastLetterComputer;
     }
 
@@ -119,5 +108,4 @@ public class Controller {
     public List<String> getNamesCities() {
         return namesCities;
     }
-
 }
