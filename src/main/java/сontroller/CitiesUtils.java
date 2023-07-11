@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class CitiesUtils {
 
     private static String filePath = "src/main/resources/CitiesList.txt";
@@ -26,5 +25,4 @@ public class CitiesUtils {
         }
         return result;
     }
-
 }
