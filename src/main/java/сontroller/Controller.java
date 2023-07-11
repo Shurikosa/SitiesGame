@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    //TODO потрібно надати значення змінним
     private List<String> usedCities = new ArrayList<>();
     private List<String> namesCities = new ArrayList<>(CitiesUtils.readSitiesFromFile());
     String lastLetterComputer;
@@ -14,42 +13,40 @@ public class Controller {
     int computerCount=0;
 
     //метод реалізує прийняття запиту, обробку та надання відповіді
-    public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField, JLabel userScoreLabel, JLabel computerScoreLabel) {
+    public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField) {
 
         if (inputCity.isEmpty()) {
-            JOptionPane.showMessageDialog(null, "Введіть місто", "Помилка", JOptionPane.PLAIN_MESSAGE);
-        }else if (Character.isLowerCase(inputCity.charAt(0))) {
-            JOptionPane.showMessageDialog(null, "Міста пишуть з заглавної", "Помилка", JOptionPane.PLAIN_MESSAGE);
-        }else if (inputCity != null && validateInput(inputCity)) {
+            JOptionPane.showMessageDialog(null, "\"Введіть назву міста\"", "Помилка", JOptionPane.PLAIN_MESSAGE);
+        } else if (Character.isLowerCase(inputCity.charAt(0))) {
+            JOptionPane.showMessageDialog(null, "\"Міста пишуться з великої літери\"", "Помилка", JOptionPane.PLAIN_MESSAGE);
+        } else if (validateInput(inputCity)) {
             usedCities.add(inputCity);
             lastLetterUser = getLastLetterUser(inputCity);
             String computerCity = getNextCity(inputCity);
             userCount++;
-            userScoreLabel.setText(String.valueOf(userCount));
+
             if (computerCity != null) {
                 lastLetterComputer = getLastLetterComputer(computerCity);
                 computerCount++;
-                computerScoreLabel.setText(String.valueOf(userCount));
                 computerResponseLabel.setText(computerCity);
             }
         } else if (inputCity.equalsIgnoreCase("Здаюсь")) {
-            JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком\"" + userCount + ":" + computerCount, "Нажаль", JOptionPane.PLAIN_MESSAGE);
-        } else if (inputCity != null && !namesCities.contains(inputCity)) {
+            JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком " + userCount + ":" + computerCount + "\"", "Нажаль", JOptionPane.PLAIN_MESSAGE);
+        } else if (!namesCities.contains(inputCity)) {
             JOptionPane.showMessageDialog(null, "Місто \"" + inputCity + "\" не знайдено", "Помилка", JOptionPane.PLAIN_MESSAGE);
         } else if (usedCities.contains(inputCity)) {
             JOptionPane.showMessageDialog(null, "Місто \"" + inputCity + "\" уже використане", "Помилка", JOptionPane.PLAIN_MESSAGE);
             //TODO потрібно додати посилання на клас який реалізує введення рахунку та змінити текст
-        } else if (inputCity != null && !lastLetterComputer.equalsIgnoreCase(inputCity.substring(0, 1))) {
+        } else if (!lastLetterComputer.equalsIgnoreCase(inputCity.substring(0, 1))) {
             JOptionPane.showMessageDialog(null, "Місто повинно починатися на літеру \"" + lastLetterComputer + "\"", "Помилка", JOptionPane.PLAIN_MESSAGE);
         } else {
-            JOptionPane.showMessageDialog(null, "\"Ви перемогли з рахунком\"" + userCount + ":" + computerCount, "Вітаємо", JOptionPane.PLAIN_MESSAGE);
+            JOptionPane.showMessageDialog(null, "\"Ви перемогли з рахунком " + userCount + ":" + computerCount + "\"", "Вітаємо", JOptionPane.PLAIN_MESSAGE);
         }
         inputField.setText("");
     }
 
     // метод перевіряє отриманий запит на валідність
     private boolean validateInput(String city){
-
         if (lastLetterComputer == null) {
             return namesCities.contains(city) && !usedCities.contains(city);
         } else {
@@ -90,7 +87,14 @@ public class Controller {
         if (lastLetterComputer.equalsIgnoreCase("ґ") || lastLetterComputer.equalsIgnoreCase("ї") || lastLetterComputer.equalsIgnoreCase("й") || lastLetterComputer.equalsIgnoreCase("ь") || lastLetterComputer.equalsIgnoreCase("и")) {
             lastLetterComputer = String.valueOf(city.toUpperCase().charAt(index - 1));
         }
-        return lastLetterComputer;
+
+        return lastLetterComputer.toUpperCase();
+    }
+
+    // реакція на кнопку "Здаюсь"
+    public void reactionToButton() {
+        JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком " + userCount + ":" + computerCount + "\"", "Нажаль", JOptionPane.PLAIN_MESSAGE);
+
     }
 
     public void setUsedCities(List<String> usedCities) {
@@ -107,5 +111,37 @@ public class Controller {
 
     public List<String> getNamesCities() {
         return namesCities;
+    }
+
+    public void setLastLetterUser(String lastLetterUser) {
+        this.lastLetterUser = lastLetterUser;
+    }
+
+    public String getLastLetterUser() {
+        return lastLetterUser;
+    }
+
+    public void setLastLetterComputer(String lastLetterComputer) {
+        this.lastLetterComputer = lastLetterComputer;
+    }
+
+    public String getLastLetterComputer() {
+        return lastLetterComputer;
+    }
+
+    public void setUserCount(int userCount) {
+        this.userCount = userCount;
+    }
+
+    public int getUserCount() {
+        return userCount;
+    }
+
+    public void setComputerCount(int computerCount) {
+        this.computerCount = computerCount;
+    }
+
+    public int getComputerCount() {
+        return computerCount;
     }
 }
