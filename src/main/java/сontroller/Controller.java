@@ -18,7 +18,11 @@ public class Controller {
     //метод реалізує прийняття запиту, обробку та надання відповіді
     public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField, JLabel userScoreLabel, JLabel computerScoreLabel) {
 
-        if (inputCity != null && validateInput(inputCity)) {
+        if (inputCity.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Введіть місто", "Помилка", JOptionPane.PLAIN_MESSAGE);
+        }else if (Character.isLowerCase(inputCity.charAt(0))) {
+            JOptionPane.showMessageDialog(null, "Міста пишуть з заглавної", "Помилка", JOptionPane.PLAIN_MESSAGE);
+        }else if (inputCity != null && validateInput(inputCity)) {
             usedCities.add(inputCity);
             lastLetterUser = getLastLetterUser(inputCity);
             String computerCity = getNextCity(inputCity);
