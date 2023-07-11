@@ -116,7 +116,6 @@ public class MainFrame extends JFrame {
         userScoreLabel.setBorder(new EmptyBorder(0, 100, 0, 0));
         scorePanel.setBorder(new EmptyBorder(0, 0, 50, 0));
 
-
         // Додаємо панелі в контейнер
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(inputPanel, BorderLayout.NORTH);
