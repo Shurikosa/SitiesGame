@@ -8,7 +8,7 @@ import java.awt.event.ActionListener;
 public class WelcomeFrame extends JFrame  {
 
     WelcomeFrame(){
-        JButton button = new JButton("Старт"); // Создали кнопку
+        JButton button = new JButton("Старт");
         button.setHorizontalTextPosition(JButton.CENTER);
         ImageIcon logo = new ImageIcon("src/main/resources/LOGO_2.png");        //TODO потрібно прив'язати файл.
         JLabel label = new JLabel("Вітаємо вас у грі дитинства і всіх розумників");
@@ -17,7 +17,7 @@ public class WelcomeFrame extends JFrame  {
         setTitle("Вітаємо");
         setIconImage(logo.getImage());
         setSize(400,100);
-        setLocationRelativeTo(null); // Положення центр
+        setLocationRelativeTo(null);
         setResizable(false);
         setVisible(true);
         add(label);
@@ -33,8 +33,8 @@ public class WelcomeFrame extends JFrame  {
 
     private void openRulesOfTheGame() {
         setVisible(false);
-        dispose(); // Закриває вітальне вікно
+        dispose();
         RulesOfTheGame rulesOfTheGame = new RulesOfTheGame();
-        rulesOfTheGame.setVisible(true); // Відкриває вікно гри
+        rulesOfTheGame.setVisible(true);
     }
 }
