@@ -1,18 +1,30 @@
-package сontroller;
+package logic;
 
 import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Controller {
-    private List<String> usedCities = new ArrayList<>();
-    private List<String> namesCities = new ArrayList<>(CitiesUtils.readSitiesFromFile());
-    String lastLetterComputer;
-    String lastLetterUser;
-    int userCount;
-    int computerCount=0;
+    private List<String> usedCities;
+    private List<String> namesCities;
+    private String lastLetterComputer;
+    private String lastLetterUser;
+    private int userCount;
+    private int computerCount;
 
-    //метод реалізує прийняття запиту, обробку та надання відповіді
+    public Controller(){
+        this.namesCities = new ArrayList<>(CitiesUtils.readSitiesFromFile());
+        this.usedCities = new ArrayList<>();
+        this.computerCount = 0;
+    }
+
+    /**
+     * method implements request acceptance, processing and response
+     *
+     * @param inputCity
+     * @param computerResponseLabel
+     * @param inputField
+     */
     public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField) {
 
         if (inputCity.isEmpty()) {
@@ -45,7 +57,12 @@ public class Controller {
         inputField.setText("");
     }
 
-    // метод перевіряє отриманий запит на валідність
+    /**
+     * the method checks the received request for validity
+     *
+     * @param city
+     * @return
+     */
     private boolean validateInput(String city){
         if (lastLetterComputer == null) {
             return namesCities.contains(city) && !usedCities.contains(city);
@@ -54,7 +71,12 @@ public class Controller {
         }
     }
 
-    // отримуємо останню літеру слова введеного користувачам та замінюємо у разі невідповідності
+    /**
+     * we get the last letter of the word entered by the user and replace it in case of a mismatch
+     *
+     * @param city
+     * @return
+     */
     private String getLastLetterUser(String city) {
         int index = city.length() - 1;
         String lastLetter = String.valueOf(city.toLowerCase().charAt(index));
@@ -64,7 +86,12 @@ public class Controller {
         return lastLetter;
     }
 
-    // отримуємо назву міста яке надсилатимиться у відповідь від комп'ютера
+    /**
+     *get the name of the city that will be sent in response from the computer
+     *
+     * @param answer
+     * @return
+     */
     private String getNextCity(String answer) {
         String nextCity = null;
 
@@ -80,7 +107,12 @@ public class Controller {
         return nextCity;
     }
 
-    // отримуємо останню літеру слова введеного комп'ютером та замінюємо у разі невідповідності
+    /**
+     *we get the last letter of the word entered by the computer and replace it in case of a mismatch
+     *
+     * @param city
+     * @return
+     */
     private String getLastLetterComputer(String city) {
         int index = city.length() - 1;
         String lastLetterComputer = String.valueOf(city.toLowerCase().charAt(index));
@@ -91,7 +123,9 @@ public class Controller {
         return lastLetterComputer.toUpperCase();
     }
 
-    // реакція на кнопку "Здаюсь"
+    /**
+     *reaction to the "Surrender" button
+     */
     public void reactionToButton() {
         JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком " + userCount + ":" + computerCount + "\"", "Нажаль", JOptionPane.PLAIN_MESSAGE);
 

@@ -1,6 +1,6 @@
 package fremes;
 
-import сontroller.Controller;
+import logic.Controller;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
@@ -24,11 +24,17 @@ public class MainFrame extends JFrame {
         ImageIcon logo = new ImageIcon("src/main/resources/LOGO_2.png");
         setIconImage(logo.getImage());
 
-        // Основний контейнер вікна
+        /**
+         * Main conainer of frame
+         *
+         */
         Container container = getContentPane();
         container.setLayout(new BorderLayout());
 
-        // Панель вводу
+        /**
+         * Input pannel
+         *
+         */
         JPanel inputPanel = new JPanel();
         inputPanel.setLayout(new GridBagLayout());
 
@@ -37,7 +43,10 @@ public class MainFrame extends JFrame {
         JButton submitButton = new JButton("Зробити хід");
         JButton submitButton2 = new JButton("Здатися");
 
-        // Збільшення розміру шрифту для компонентів вводу
+        /**
+         * font enlargement for input components
+         *
+          */
         Font labelFont = inputLabel.getFont();
         Font largerLabelFont = labelFont.deriveFont(labelFont.getSize() + 15f);
         inputLabel.setFont(largerLabelFont);
@@ -52,7 +61,10 @@ public class MainFrame extends JFrame {
         Font buttonFont2 = submitButton2.getFont();
         submitButton2.setFont(largerButtonFont);
 
-        // Додаємо компоненти на панель вводу
+        /**
+         *Add components to the input panel
+         *
+         */
         GridBagConstraints gbc = new GridBagConstraints();
         gbc.gridx = 0;
         gbc.gridy = 0;
@@ -63,16 +75,23 @@ public class MainFrame extends JFrame {
         gbc.insets = new Insets(0, 0, 0, 0); // Нульові відступи
         inputPanel.add(inputField, gbc);
 
-        // Панель для центрування кнопки
+        /**
+         *Panel for button centering
+         *
+         */
         JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         buttonPanel.add(submitButton);
         buttonPanel.add(submitButton2);
 
-        // Додаємо компоненти на панель вводу
+        /**
+         *Add components to the input panel
+         */
         gbc.gridy = 2;
         inputPanel.add(buttonPanel, gbc);
 
-        // Панель відповіді комп'ютера
+        /**
+         *Computer answer panel
+         */
         JPanel responsePanel = new JPanel();
         responsePanel.setLayout(new FlowLayout());
 
@@ -95,7 +114,9 @@ public class MainFrame extends JFrame {
         responsePanel.add(responseLabel);
         responsePanel.add(computerResponseLabel);
 
-        // Панель рахунку
+        /**
+         * Account panel
+         */
         JPanel scorePanel = new JPanel(new BorderLayout());
         JPanel scoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel userScoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -111,19 +132,25 @@ public class MainFrame extends JFrame {
         scorePanel.add(computerScoreNamePanel, BorderLayout.EAST);
         computerScoreNamePanel.add(computerScoreLabel);
 
-        // Відступ зправа для computerScoreLabel
+        /**
+         * Indentation on the right forcomputerScoreLabel
+         */
         computerScoreLabel.setBorder(new EmptyBorder(0, 0, 0, 100));
         userScoreLabel.setBorder(new EmptyBorder(0, 100, 0, 0));
         scorePanel.setBorder(new EmptyBorder(0, 0, 50, 0));
 
-        // Додаємо панелі в контейнер
+        /**
+         * Add panels to the container
+         */
         JPanel mainPanel = new JPanel(new BorderLayout());
         mainPanel.add(inputPanel, BorderLayout.NORTH);
         mainPanel.add(responsePanel, BorderLayout.CENTER);
         mainPanel.add(scorePanel, BorderLayout.SOUTH);
         container.add(mainPanel, BorderLayout.CENTER);
 
-        // Додаємо обробник події для кнопки "Зробити хід"
+        /**
+         *Add an event handler for the "Make a move" button
+         */
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
