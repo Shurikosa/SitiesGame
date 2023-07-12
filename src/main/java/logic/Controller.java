@@ -25,7 +25,7 @@ public class Controller {
      * @param computerResponseLabel
      * @param inputField
      */
-    public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField) {
+    public void getCityValidation(String inputCity, JLabel computerResponseLabel, JTextField inputField, JLabel userScoreLabel, JLabel computerScoreLabel) {
 
         if (inputCity.isEmpty()) {
             JOptionPane.showMessageDialog(null, "\"Введіть назву міста\"", "Помилка", JOptionPane.PLAIN_MESSAGE);
@@ -36,11 +36,13 @@ public class Controller {
             lastLetterUser = getLastLetterUser(inputCity);
             String computerCity = getNextCity(inputCity);
             userCount++;
+            userScoreLabel.setText(String.valueOf(userCount));
 
             if (computerCity != null) {
                 lastLetterComputer = getLastLetterComputer(computerCity);
                 computerCount++;
                 computerResponseLabel.setText(computerCity);
+                computerScoreLabel.setText(String.valueOf(userCount));
             }
         } else if (inputCity.equalsIgnoreCase("Здаюсь")) {
             JOptionPane.showMessageDialog(null, "\"Ви програли з рахунком " + userCount + ":" + computerCount + "\"", "Нажаль", JOptionPane.PLAIN_MESSAGE);

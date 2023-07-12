@@ -122,7 +122,7 @@ public class MainFrame extends JFrame {
         JPanel userScoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JPanel computerScoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
 
-        scoreLabel = new JLabel("Рахунок");
+        scoreLabel = new JLabel("Кількість названих міст");
         scoreLabel.setFont(largerLabelFont);
         scorePanel.add(scoreNamePanel, BorderLayout.NORTH);
         scoreNamePanel.add(scoreLabel);
@@ -154,7 +154,7 @@ public class MainFrame extends JFrame {
         submitButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String inputCity = inputField.getText();
-                controller.getCityValidation(inputCity, computerResponseLabel, inputField);
+                controller.getCityValidation(inputCity, computerResponseLabel, inputField, userScoreLabel, computerScoreLabel);
             }
         });
         submitButton2.addActionListener(new ActionListener() {
