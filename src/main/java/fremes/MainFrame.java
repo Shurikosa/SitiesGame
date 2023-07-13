@@ -115,7 +115,7 @@ public class MainFrame extends JFrame {
         responsePanel.add(computerResponseLabel);
 
         /**
-         * Account panel
+         * Score panel
          */
         JPanel scorePanel = new JPanel(new BorderLayout());
         JPanel scoreNamePanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
